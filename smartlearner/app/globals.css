@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand Colors */
+  --color-primary: #6C47FF;
+  --color-primary-light: #EDE9FF;
+  --color-primary-dim: #5B30EE;
+  --color-secondary: #FF6B35;
+  --color-secondary-light: #FFF0EB;
+  --color-success: #00C896;
+  --color-success-light: #E6FFF6;
+  --color-warning: #FFB800;
+  --color-warning-light: #FFF8E6;
+  --color-error: #FF4757;
+  --color-error-light: #FFF0F1;
+
+  /* Surface & Background */
+  --color-bg: #F8F7FF;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F0EEFF;
+  --color-surface-3: #E8E7F1;
+
+  /* Text */
+  --color-text: #1A1433;
+  --color-text-muted: #6B7280;
+  --color-text-light: #9CA3AF;
+
+  /* Border */
+  --color-border: #E5E0FF;
+  --color-border-muted: rgba(172, 172, 180, 0.15);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows — purple-tinted */
+  --shadow-sm: 0 1px 3px rgba(108, 71, 255, 0.08);
+  --shadow-md: 0 4px 16px rgba(108, 71, 255, 0.12);
+  --shadow-lg: 0 8px 32px rgba(108, 71, 255, 0.16);
+  --shadow-glow: 0 0 24px rgba(108, 71, 255, 0.3);
+  --shadow-purple: 0 12px 32px rgba(108, 71, 255, 0.12);
+
+  /* Motion */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@theme inline {
+  /* Colors */
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dim: var(--color-primary-dim);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-light: var(--color-secondary-light);
+  --color-success: var(--color-success);
+  --color-success-light: var(--color-success-light);
+  --color-warning: var(--color-warning);
+  --color-warning-light: var(--color-warning-light);
+  --color-error: var(--color-error);
+  --color-error-light: var(--color-error-light);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-2: var(--color-surface-2);
+  --color-surface-3: var(--color-surface-3);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-light: var(--color-text-light);
+  --color-border: var(--color-border);
+  --color-border-muted: var(--color-border-muted);
+
+  /* Fonts */
+  --font-heading: var(--font-plus-jakarta);
+  --font-body: var(--font-plus-jakarta);
+
+  /* Radii */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+
+  /* Shadows */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-glow: var(--shadow-glow);
+  --shadow-purple: var(--shadow-purple);
+}
+
+/* Global Styles */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body), 'Plus Jakarta Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-light);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Flip Card 3D */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Shimmer animation for skeleton loading */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-2) 25%,
+    var(--color-surface) 50%,
+    var(--color-surface-2) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Float animation for XP popup */
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-32px);
+  }
+}
+
+.animate-float-up {
+  animation: float-up 800ms ease-out forwards;
+}
+
+/* Pulse glow for overdue cards */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(108, 71, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px 4px rgba(108, 71, 255, 0.3);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Fire flicker */
+@keyframes flicker {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(-3deg); }
+  50% { transform: scale(1.05) rotate(2deg); }
+  75% { transform: scale(1.15) rotate(-2deg); }
+}
+
+.animate-flicker {
+  animation: flicker 1.5s ease-in-out infinite;
+}
+
+/* Bounce in */
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 600ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
