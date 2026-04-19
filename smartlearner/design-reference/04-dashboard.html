@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartLearner - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#4eeeb9",
+                        "on-primary": "#f6f0ff",
+                        "on-background": "#2d2e34",
+                        "tertiary-dim": "#005b43",
+                        "inverse-on-surface": "#9c9ca4",
+                        "secondary-container": "#ffc4b2",
+                        "surface-tint": "#5b30ee",
+                        "error": "#b41340",
+                        "surface-variant": "#dcdce7",
+                        "surface-container-highest": "#dcdce7",
+                        "on-tertiary": "#c7ffe4",
+                        "on-surface": "#2d2e34",
+                        "primary-fixed": "#a391ff",
+                        "on-error-container": "#510017",
+                        "background": "#f7f6fe",
+                        "inverse-surface": "#0c0e13",
+                        "tertiary-container": "#60fcc6",
+                        "outline": "#76767d",
+                        "surface-container": "#e8e7f1",
+                        "surface-bright": "#f7f6fe",
+                        "on-primary-fixed": "#000000",
+                        "on-secondary-fixed-variant": "#942d00",
+                        "secondary-fixed": "#ffc4b2",
+                        "outline-variant": "#acacb4",
+                        "surface-container-low": "#f0f0f9",
+                        "secondary-dim": "#922c00",
+                        "inverse-primary": "#927dff",
+                        "error-container": "#f74b6d",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#00694d",
+                        "surface": "#f7f6fe",
+                        "on-tertiary-fixed-variant": "#00694d",
+                        "on-tertiary-container": "#005e44",
+                        "primary-dim": "#4f1ae3",
+                        "on-secondary-fixed": "#631b00",
+                        "surface-dim": "#d3d4df",
+                        "on-secondary": "#ffefeb",
+                        "primary-container": "#a391ff",
+                        "on-surface-variant": "#5a5b62",
+                        "on-error": "#ffefef",
+                        "on-tertiary-fixed": "#004935",
+                        "error-dim": "#a70138",
+                        "primary": "#5b30ee",
+                        "on-secondary-container": "#842700",
+                        "secondary": "#a63300",
+                        "primary-fixed-dim": "#9581ff",
+                        "tertiary-fixed": "#60fcc6",
+                        "surface-container-high": "#e2e2ec",
+                        "on-primary-container": "#220076",
+                        "on-primary-fixed-variant": "#2b0090",
+                        "secondary-fixed-dim": "#ffb197"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined[data-weight="fill"] { font-variation-settings: 'FILL' 1; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-3xl docked full-width top-0 shadow-xl flex justify-between items-center w-full px-6 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<button class="text-[#6C47FF] dark:text-[#8B6EFF] hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-all duration-300 rounded-full p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-extrabold tracking-tight text-2xl font-black tracking-tighter text-[#6C47FF] dark:text-[#8B6EFF]">SmartLearner</h1>
+</div>
+<button class="text-[#6C47FF] dark:text-[#8B6EFF] font-bold hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-all duration-300 rounded-full px-4 py-2">
+            Sign In
+        </button>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col gap-8">
+<!-- Welcome & Stats Row -->
+<section class="flex flex-col md:flex-row gap-6 items-stretch">
+<!-- Daily Review Hero Card -->
+<div class="flex-1 bg-surface-container-lowest rounded-lg p-6 shadow-[0_12px_32px_rgba(108,71,255,0.12)] flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-16 -top-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-700"></div>
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-2">Daily Review</h2>
+<p class="text-on-surface-variant font-medium text-lg">You have <span class="text-primary font-bold">42 cards</span> due today.</p>
+</div>
+<div class="mt-8 flex items-center justify-between">
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle class="text-tertiary-container/30" cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-tertiary" cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="62.8" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-xl font-bold text-tertiary">75%</span>
+</div>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full px-8 py-4 font-bold shadow-[0_12px_32px_rgba(108,71,255,0.2)] hover:from-primary-dim hover:to-primary transition-all duration-300 flex items-center gap-2">
+                        Start Review
+                        <span class="material-symbols-outlined" data-weight="fill">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Gamification Widgets -->
+<div class="flex flex-col gap-6 w-full md:w-80">
+<!-- Streak Widget -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_8px_24px_rgba(0,0,0,0.04)] flex items-center gap-4 border-l-4 border-secondary">
+<div class="w-14 h-14 rounded-full bg-secondary-container/30 flex items-center justify-center text-3xl">
+                        🔥
+                    </div>
+<div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Current Streak</p>
+<p class="text-2xl font-bold text-on-surface">14 Days</p>
+</div>
+</div>
+<!-- Level Widget -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_8px_24px_rgba(0,0,0,0.04)] flex items-center gap-4 border-l-4 border-primary">
+<div class="w-14 h-14 rounded-full bg-primary-container/30 flex items-center justify-center text-3xl">
+                        👑
+                    </div>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-2">
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Level 12</p>
+<p class="text-xs font-bold text-primary">240/500 XP</p>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-tertiary w-[48%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Topic Grid Section -->
+<section class="bg-surface-container-low rounded-xl p-6 sm:p-8">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-2xl font-bold text-on-surface">Your Topics</h3>
+<button class="text-primary font-bold hover:text-primary-dim transition-colors flex items-center gap-1">
+                    View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Topic Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_8px_24px_rgba(0,0,0,0.04)] border-l-4 border-blue-500 hover:shadow-[0_12px_32px_rgba(108,71,255,0.12)] transition-shadow cursor-pointer relative group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-2xl">
+                            🧬
+                        </div>
+<div class="text-right">
+<p class="text-sm font-bold text-error">12 Due</p>
+<p class="text-xs text-on-surface-variant">145 Total</p>
+</div>
+</div>
+<h4 class="text-lg font-bold text-on-surface mb-2">Cellular Biology</h4>
+<div class="flex items-center gap-3">
+<div class="h-1.5 flex-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[82%] rounded-full"></div>
+</div>
+<span class="text-xs font-bold text-tertiary">82%</span>
+</div>
+</div>
+<!-- Topic Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_8px_24px_rgba(0,0,0,0.04)] border-l-4 border-purple-500 hover:shadow-[0_12px_32px_rgba(108,71,255,0.12)] transition-shadow cursor-pointer relative group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-2xl">
+                            🏛️
+                        </div>
+<div class="text-right">
+<p class="text-sm font-bold text-error">28 Due</p>
+<p class="text-xs text-on-surface-variant">312 Total</p>
+</div>
+</div>
+<h4 class="text-lg font-bold text-on-surface mb-2">Roman History</h4>
+<div class="flex items-center gap-3">
+<div class="h-1.5 flex-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[45%] rounded-full"></div>
+</div>
+<span class="text-xs font-bold text-tertiary">45%</span>
+</div>
+</div>
+<!-- Topic Card 3 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_8px_24px_rgba(0,0,0,0.04)] border-l-4 border-emerald-500 hover:shadow-[0_12px_32px_rgba(108,71,255,0.12)] transition-shadow cursor-pointer relative group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-2xl">
+                            🧮
+                        </div>
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface-variant">0 Due</p>
+<p class="text-xs text-on-surface-variant">89 Total</p>
+</div>
+</div>
+<h4 class="text-lg font-bold text-on-surface mb-2">Linear Algebra</h4>
+<div class="flex items-center gap-3">
+<div class="h-1.5 flex-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[95%] rounded-full"></div>
+</div>
+<span class="text-xs font-bold text-tertiary">95%</span>
+</div>
+</div>
+<!-- Add Topic Card -->
+<button class="bg-surface-container-lowest/50 rounded-lg p-6 border-2 border-dashed border-outline-variant hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center justify-center min-h-[160px] gap-3">
+<span class="material-symbols-outlined text-4xl text-outline-variant group-hover:text-primary">add_circle</span>
+<span class="font-bold text-on-surface-variant">Add New Topic</span>
+</button>
+</div>
+</section>
+<!-- Recent Activity Feed -->
+<section class="max-w-3xl">
+<h3 class="text-xl font-bold text-on-surface mb-4">Recent Activity</h3>
+<div class="bg-surface-container-lowest rounded-lg p-2 shadow-[0_8px_24px_rgba(0,0,0,0.04)]">
+<div class="flex items-center gap-4 p-4 hover:bg-surface-container-low rounded-xl transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-weight="fill">check_circle</span>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-on-surface">Completed Daily Goal</p>
+<p class="text-sm text-on-surface-variant">Reviewed 50 cards across 3 topics.</p>
+</div>
+<span class="text-xs font-bold text-outline">2h ago</span>
+</div>
+<div class="flex items-center gap-4 p-4 hover:bg-surface-container-low rounded-xl transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-primary-container/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-weight="fill">military_tech</span>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-on-surface">Earned 'Night Owl' Badge</p>
+<p class="text-sm text-on-surface-variant">Studied past midnight.</p>
+</div>
+<span class="text-xs font-bold text-outline">Yesterday</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden bg-white/70 dark:bg-slate-900/70 backdrop-blur-3xl font-['Plus_Jakarta_Sans'] text-[11px] font-semibold tracking-wide fixed bottom-0 w-full rounded-t-[2.5rem] shadow-[0_-12px_32px_rgba(108,71,255,0.12)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3">
+<a class="flex flex-col items-center justify-center bg-[#6C47FF]/10 dark:bg-[#6C47FF]/20 text-[#6C47FF] dark:text-[#8B6EFF] rounded-2xl px-5 py-2 hover:text-[#6C47FF] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="dashboard" data-weight="fill">dashboard</span>
+            Dashboard
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#6C47FF] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="analytics">analytics</span>
+            Progress
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#6C47FF] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="military_tech">military_tech</span>
+            Badges
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#6C47FF] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+            Settings
+        </a>
+</nav>
+<!-- Footer -->
+<footer class="hidden md:flex bg-[#f0f0f9] dark:bg-slate-950 font-['Plus_Jakarta_Sans'] text-sm text-slate-500 w-full py-12 flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-8 gap-6 mt-16">
+<div class="font-bold text-[#6C47FF]">SmartLearner</div>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-[#6C47FF] transition-all" href="#">Privacy</a>
+<a class="text-slate-500 hover:text-[#6C47FF] transition-all" href="#">Terms</a>
+<a class="text-slate-500 hover:text-[#6C47FF] transition-all" href="#">Support</a>
+<a class="text-slate-500 hover:text-[#6C47FF] transition-all" href="#">Contact</a>
+</div>
+<div>© 2024 SmartLearner AI. Elevate your mind.</div>
+</footer>
+</body></html>

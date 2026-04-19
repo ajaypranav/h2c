@@ -63,7 +63,7 @@ export default function AuthForm() {
           return;
         }
 
-        const { error } = await supabase.auth.signUp({
+        const { data: authData, error } = await supabase.auth.signUp({
           email: data.email,
           password: data.password,
           options: {
@@ -71,6 +71,13 @@ export default function AuthForm() {
           },
         });
         if (error) throw error;
+
+        // If email confirmation is required, session will be null
+        if (!authData.session) {
+          toast.success("Account created! Please check your email to confirm your account.");
+          setIsLoading(false);
+          return;
+        }
 
         // Sync new user to DB
         await fetch("/api/auth/sync", {
@@ -82,8 +89,9 @@ export default function AuthForm() {
         toast.success("Account created! Let's set up your profile.");
         router.push("/onboarding");
       }
-    } catch (e: any) {
-      toast.error(e.message || "An error occurred");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "An error occurred";
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }

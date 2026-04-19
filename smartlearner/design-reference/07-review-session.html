@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartLearner - Study Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#4eeeb9",
+                        "on-primary": "#f6f0ff",
+                        "on-background": "#2d2e34",
+                        "tertiary-dim": "#005b43",
+                        "inverse-on-surface": "#9c9ca4",
+                        "secondary-container": "#ffc4b2",
+                        "surface-tint": "#5b30ee",
+                        "error": "#b41340",
+                        "surface-variant": "#dcdce7",
+                        "surface-container-highest": "#dcdce7",
+                        "on-tertiary": "#c7ffe4",
+                        "on-surface": "#2d2e34",
+                        "primary-fixed": "#a391ff",
+                        "on-error-container": "#510017",
+                        "background": "#f7f6fe",
+                        "inverse-surface": "#0c0e13",
+                        "tertiary-container": "#60fcc6",
+                        "outline": "#76767d",
+                        "surface-container": "#e8e7f1",
+                        "surface-bright": "#f7f6fe",
+                        "on-primary-fixed": "#000000",
+                        "on-secondary-fixed-variant": "#942d00",
+                        "secondary-fixed": "#ffc4b2",
+                        "outline-variant": "#acacb4",
+                        "surface-container-low": "#f0f0f9",
+                        "secondary-dim": "#922c00",
+                        "inverse-primary": "#927dff",
+                        "error-container": "#f74b6d",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#00694d",
+                        "surface": "#f7f6fe",
+                        "on-tertiary-fixed-variant": "#00694d",
+                        "on-tertiary-container": "#005e44",
+                        "primary-dim": "#4f1ae3",
+                        "on-secondary-fixed": "#631b00",
+                        "surface-dim": "#d3d4df",
+                        "on-secondary": "#ffefeb",
+                        "primary-container": "#a391ff",
+                        "on-surface-variant": "#5a5b62",
+                        "on-error": "#ffefef",
+                        "on-tertiary-fixed": "#004935",
+                        "error-dim": "#a70138",
+                        "primary": "#5b30ee",
+                        "on-secondary-container": "#842700",
+                        "secondary": "#a63300",
+                        "primary-fixed-dim": "#9581ff",
+                        "tertiary-fixed": "#60fcc6",
+                        "surface-container-high": "#e2e2ec",
+                        "on-primary-container": "#220076",
+                        "on-primary-fixed-variant": "#2b0090",
+                        "secondary-fixed-dim": "#ffb197"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .perspective-1500 { perspective: 1500px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        .custom-gradient-bg { background: radial-gradient(circle at 50% 50%, #fdfcff 0%, #f0f0f9 100%); }
+    </style>
+</head>
+<body class="custom-gradient-bg text-on-surface min-h-screen flex flex-col font-body overflow-hidden">
+<!-- 1. Top Progress Bar -->
+<div class="fixed top-0 left-0 w-full h-1.5 bg-surface-container z-[60]">
+<div class="h-full bg-gradient-to-r from-primary to-tertiary-fixed-dim w-[25%] transition-all duration-500"></div>
+</div>
+<!-- Header Section -->
+<header class="flex justify-between items-center w-full px-6 py-8 relative z-50">
+<!-- 3. Exit Button -->
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-2xl" data-icon="close">close</span>
+</button>
+<!-- 2. Card Counter -->
+<div class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+<span class="text-sm font-bold text-on-surface-variant tracking-wider uppercase">Card 3 of 12</span>
+<!-- 8. XP Pop-up -->
+<div class="absolute -bottom-10 flex items-center gap-1.5 bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-xs font-extrabold shadow-sm animate-bounce">
+<span class="material-symbols-outlined text-sm" data-icon="star">star</span>
+                +15 XP
+            </div>
+</div>
+<!-- 4. Session Metrics -->
+<div class="flex items-center gap-4 bg-surface-container-lowest/50 backdrop-blur-md px-4 py-2 rounded-full border border-white/40">
+<div class="flex items-center gap-1.5">
+<span class="text-lg">🔥</span>
+<span class="font-bold text-on-surface">14</span>
+</div>
+<div class="w-px h-4 bg-outline-variant/30"></div>
+<div class="flex items-center gap-1.5 text-primary">
+<span class="font-extrabold text-sm">+45 XP</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center justify-center p-6 sm:p-12 relative">
+<!-- 5. Enhanced Flip Card -->
+<div class="group perspective-1500 w-full max-w-2xl aspect-[4/5] sm:aspect-[4/3] max-h-[500px] mb-8 cursor-pointer relative z-10">
+<!-- Card Inner (Simulating hover state for 'flipped' look in static preview or waiting for tap) -->
+<div class="relative w-full h-full transition-transform duration-700 transform-style-3d shadow-[0_32px_64px_-16px_rgba(91,48,238,0.2)] rounded-lg" id="flashcard">
+<!-- Front of Card (Question) -->
+<div class="absolute inset-0 w-full h-full bg-surface-container-lowest rounded-lg flex flex-col items-center justify-center p-8 sm:p-16 backface-hidden border border-white/50">
+<div class="absolute top-8 left-8 opacity-20">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="neurology">neurology</span>
+</div>
+<h2 class="text-3xl sm:text-4xl font-headline font-extrabold text-on-surface text-center tracking-tight leading-tight max-w-md">
+                        What is the primary function of mitochondria?
+                    </h2>
+<p class="text-primary mt-12 text-sm font-bold tracking-widest uppercase animate-pulse">Tap to reveal</p>
+</div>
+<!-- Back of Card (Answer - hidden in default state, shown on flip) -->
+<!-- For visualization purposes, this is hidden unless the user script toggles classes -->
+<div class="absolute inset-0 w-full h-full bg-primary text-on-primary rounded-lg flex flex-col items-center justify-center p-8 sm:p-16 backface-hidden rotate-y-180 shadow-inner">
+<h2 class="text-4xl sm:text-5xl font-headline font-extrabold text-center tracking-tight leading-tight">
+                        ATP Production
+                    </h2>
+<p class="mt-6 text-on-primary/80 text-center text-lg max-w-xs leading-relaxed">
+                        Converting chemical energy from food into a form the cell can use.
+                    </p>
+</div>
+</div>
+</div>
+<!-- 6. Hint Button -->
+<button class="flex items-center gap-2 text-on-surface-variant/60 hover:text-primary transition-colors font-semibold mb-12">
+<span class="text-lg">💡</span>
+<span>Hint</span>
+</button>
+<!-- 9. Show Answer Button (Primary state) -->
+<div class="w-full max-w-sm">
+<button class="w-full py-5 bg-primary text-on-primary rounded-full font-extrabold text-lg shadow-[0_12px_24px_-8px_rgba(91,48,238,0.5)] hover:scale-[1.02] active:scale-95 transition-all">
+                Show Answer
+            </button>
+</div>
+<!-- 7. Rating Buttons (Horizontal row - hidden until flipped) -->
+<!-- In a real app, this would replace the 'Show Answer' button after flip -->
+<div class="hidden w-full max-w-3xl grid grid-cols-4 gap-4 mt-8">
+<button class="flex flex-col items-center justify-center py-5 px-2 rounded-2xl bg-surface-container-lowest border-2 border-transparent hover:border-error transition-all group">
+<span class="text-3xl mb-2 group-hover:scale-110 transition-transform">🔴</span>
+<span class="font-extrabold text-sm text-error">Forgot</span>
+</button>
+<button class="flex flex-col items-center justify-center py-5 px-2 rounded-2xl bg-surface-container-lowest border-2 border-transparent hover:border-amber-500 transition-all group">
+<span class="text-3xl mb-2 group-hover:scale-110 transition-transform">🟡</span>
+<span class="font-extrabold text-sm text-amber-600">Hard</span>
+</button>
+<button class="flex flex-col items-center justify-center py-5 px-2 rounded-2xl bg-surface-container-lowest border-2 border-transparent hover:border-green-500 transition-all group">
+<span class="text-3xl mb-2 group-hover:scale-110 transition-transform">🟢</span>
+<span class="font-extrabold text-sm text-green-600">Good</span>
+</button>
+<button class="flex flex-col items-center justify-center py-5 px-2 rounded-2xl bg-surface-container-lowest border-2 border-transparent hover:border-blue-500 transition-all group">
+<span class="text-3xl mb-2 group-hover:scale-110 transition-transform">⭐</span>
+<span class="font-extrabold text-sm text-blue-600">Easy</span>
+</button>
+</div>
+</main>
+<!-- Background Elements for Immersion -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
+<div class="absolute top-[10%] left-[5%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[10%] right-[5%] w-[40%] h-[40%] bg-tertiary/5 rounded-full blur-[120px]"></div>
+</div>
+</body></html>

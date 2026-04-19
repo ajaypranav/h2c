@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Session Complete | SmartLearner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f7f6fe",
+                        "secondary-fixed": "#ffc4b2",
+                        "outline-variant": "#acacb4",
+                        "on-secondary-container": "#842700",
+                        "on-surface-variant": "#5a5b62",
+                        "on-secondary-fixed-variant": "#942d00",
+                        "secondary-dim": "#922c00",
+                        "surface-container-highest": "#dcdce7",
+                        "inverse-surface": "#0c0e13",
+                        "on-background": "#2d2e34",
+                        "inverse-primary": "#927dff",
+                        "error-container": "#f74b6d",
+                        "on-tertiary-fixed": "#004935",
+                        "surface-tint": "#5b30ee",
+                        "on-error-container": "#510017",
+                        "secondary-container": "#ffc4b2",
+                        "error": "#b41340",
+                        "outline": "#76767d",
+                        "on-primary": "#f6f0ff",
+                        "tertiary": "#00694d",
+                        "primary-fixed-dim": "#9581ff",
+                        "surface-container-low": "#f0f0f9",
+                        "secondary-fixed-dim": "#ffb197",
+                        "on-tertiary-container": "#005e44",
+                        "tertiary-container": "#60fcc6",
+                        "primary-dim": "#4f1ae3",
+                        "secondary": "#a63300",
+                        "background": "#f7f6fe",
+                        "surface-variant": "#dcdce7",
+                        "primary-fixed": "#a391ff",
+                        "inverse-on-surface": "#9c9ca4",
+                        "error-dim": "#a70138",
+                        "tertiary-dim": "#005b43",
+                        "on-tertiary-fixed-variant": "#00694d",
+                        "on-surface": "#2d2e34",
+                        "on-error": "#ffefef",
+                        "surface-container": "#e8e7f1",
+                        "tertiary-fixed": "#60fcc6",
+                        "on-secondary": "#ffefeb",
+                        "on-primary-fixed": "#000000",
+                        "surface-bright": "#f7f6fe",
+                        "tertiary-fixed-dim": "#4eeeb9",
+                        "surface-dim": "#d3d4df",
+                        "primary": "#5b30ee",
+                        "on-primary-fixed-variant": "#2b0090",
+                        "primary-container": "#a391ff",
+                        "on-tertiary": "#c7ffe4",
+                        "surface-container-high": "#e2e2ec",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#631b00",
+                        "on-primary-container": "#220076"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .kinetic-shadow {
+            box-shadow: 0 12px 32px rgba(108, 71, 255, 0.12);
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 8px;
+            height: 12px;
+            border-radius: 2px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface selection:bg-primary-container min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Anchor (As per JSON configuration, even if immersive, shell is hidden per rule) -->
+<header class="flex items-center justify-between px-6 h-16 w-full fixed top-0 z-50 bg-white/70 backdrop-blur-3xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-slate-100/50 p-2 rounded-full transition-all">close</span>
+<span class="text-xl font-black text-indigo-600">SmartLearner</span>
+</div>
+<div class="flex-1 max-w-xs mx-auto px-4">
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-indigo-500 to-emerald-500 w-full"></div>
+</div>
+</div>
+<div class="w-10"></div> <!-- Spacer for symmetry -->
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-4 pt-24 pb-12 relative">
+<!-- Confetti Decoration -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
+<div class="confetti-piece bg-primary top-10 left-[10%] rotate-45"></div>
+<div class="confetti-piece bg-tertiary top-20 left-[25%] -rotate-12"></div>
+<div class="confetti-piece bg-secondary top-15 left-[60%] rotate-90"></div>
+<div class="confetti-piece bg-primary-fixed top-40 left-[85%] rotate-12"></div>
+<div class="confetti-piece bg-tertiary top-60 left-[5%] rotate-45"></div>
+<div class="confetti-piece bg-secondary-fixed top-32 left-[40%] -rotate-45"></div>
+</div>
+<div class="z-10 w-full max-w-2xl flex flex-col items-center">
+<!-- Hero Heading -->
+<div class="text-center mb-8">
+<h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-on-surface mb-2">
+                    Session Complete! 🎉
+                </h1>
+<p class="text-on-surface-variant text-lg">You're crushing your learning goals today.</p>
+</div>
+<!-- Main Stats Bento Card -->
+<div class="w-full bg-surface-container-lowest p-8 md:p-10 rounded-lg kinetic-shadow mb-8 border border-outline-variant/10">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+<div class="flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary" data-icon="style">style</span>
+</div>
+<span class="text-2xl font-bold">12</span>
+<span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Cards</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/30 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-tertiary" data-icon="bullseye">target</span>
+</div>
+<span class="text-2xl font-bold">83%</span>
+<span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Accuracy</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-secondary-container/30 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-secondary" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<span class="text-2xl font-bold text-secondary">+180</span>
+<span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">XP</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-outline" data-icon="schedule">schedule</span>
+</div>
+<span class="text-2xl font-bold">4m 32s</span>
+<span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Time</span>
+</div>
+</div>
+<!-- Streak Banner -->
+<div class="bg-secondary-container/20 rounded-full py-4 px-6 flex items-center justify-center gap-3 mb-10">
+<span class="material-symbols-outlined text-secondary text-2xl" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="text-on-secondary-container font-bold text-lg">14 day streak! Keep it up!</span>
+</div>
+<!-- Badge Reveal -->
+<div class="flex flex-col md:flex-row items-center gap-6 bg-surface p-6 rounded-lg relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-primary-fixed/10 to-tertiary-fixed/10 opacity-50"></div>
+<div class="relative w-24 h-24 flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-fixed to-tertiary-fixed rounded-full blur-xl animate-pulse opacity-40"></div>
+<div class="relative w-20 h-20 bg-surface-container-lowest rounded-full kinetic-shadow flex items-center justify-center border-4 border-primary-fixed">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="military_tech" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+</div>
+<div class="relative text-center md:text-left">
+<h3 class="text-xl font-bold text-primary mb-1">New Badge: Perfect Score</h3>
+<p class="text-on-surface-variant leading-tight">You achieved 100% accuracy in a session. Incredible focus!</p>
+</div>
+</div>
+</div>
+<!-- Level Progress -->
+<div class="w-full max-w-md mb-12">
+<div class="flex justify-between items-end mb-3">
+<div class="flex items-baseline gap-1">
+<span class="text-on-surface-variant text-sm font-bold uppercase tracking-widest">Level</span>
+<span class="text-3xl font-black text-primary">12</span>
+</div>
+<div class="text-right">
+<span class="text-on-surface-variant text-sm font-bold">14,850 / 15,000 XP</span>
+</div>
+</div>
+<div class="h-6 w-full bg-surface-container-high rounded-full p-1.5 shadow-inner">
+<div class="h-full bg-gradient-to-r from-primary to-tertiary rounded-full relative" style="width: 92%">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 bg-white rounded-full border-4 border-tertiary shadow-sm"></div>
+</div>
+</div>
+<div class="flex justify-between mt-2">
+<span class="text-xs font-bold text-outline uppercase">Next Level</span>
+<span class="text-xs font-black text-tertiary uppercase">150 XP to Level 13</span>
+</div>
+</div>
+<!-- CTAs -->
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+<button class="px-10 py-5 bg-primary text-on-primary rounded-full font-bold text-lg kinetic-shadow hover:bg-primary-dim transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+                    Review More
+                </button>
+<button class="px-10 py-5 border-2 border-primary text-primary rounded-full font-bold text-lg hover:bg-primary/5 transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Back to Dashboard
+                </button>
+</div>
+</div>
+<!-- Decorative Floating Elements -->
+<div class="hidden lg:block absolute bottom-10 left-10 -rotate-6 scale-110 opacity-20">
+<img alt="Student smiling" class="w-48 h-64 object-cover rounded-lg" data-alt="Candid portrait of a young college student smiling outdoors with warm natural sunlight and soft park background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfNsJc94smXRU18RiRdmsidBBqmVIr5C259EFs6r5cQCQTgWXBrD_vYOJDDGjk4N_DXdBFOU5GRLL0DIzPb1rTJ2KNt7F2HPm8e2cSt5D7-Z_5QzIaeSTu7Gy_-9QVPBitAOzt0M4LkbpzuTFRvVr_tL12H97Fmh8ycbRPkJ_o238Rt0VNTnFJdZDfixy0MoIA1JIBSq_8rBsyGBUTSfGrgiPTScksCpNomLVaLR2ml4ZlO_FzZNMkjXF-9hkWoPzBilJsEylsCas"/>
+</div>
+<div class="hidden lg:block absolute top-24 right-10 rotate-3 scale-90 opacity-20">
+<img alt="Library books" class="w-48 h-64 object-cover rounded-lg" data-alt="Atmospheric close-up of aged leather-bound books on a dark wooden shelf with cinematic low lighting and dust motes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBCGKGlOyUmuk_1p-5WXuUjIEe_dirWHi3K2S6QUVR5uNcY4FuRs4zp6OGPJGdNJr8rfeiJEpJbCKpmrE2uG3W7zdF9n_D_vIIS7hGupUedGe-Qd2Q5oxjQ_D9_ZkroKF0pBVrxQtDmGmB11kkyxrmpT_EbvHtK3bEk1V69RND0DgGf2NCD46y4WQ98rzCPXlKCtNFJKFyhqCEl0PQZ_6jWk6NWKDCIWoUk_FY7Q6v4953HK6zVR0ON8vaMq4dYb5QXxUOOqqM0NI"/>
+</div>
+</main>
+<!-- Footer Identity -->
+<footer class="py-8 text-center">
+<div class="flex items-center justify-center gap-2 opacity-50">
+<span class="material-symbols-outlined text-sm" data-icon="verified">verified</span>
+<span class="text-sm font-bold uppercase tracking-[0.2em]">SmartLearner Kinetic Engine</span>
+</div>
+</footer>
+</body></html>

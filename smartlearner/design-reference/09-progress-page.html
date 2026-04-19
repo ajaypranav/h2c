@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartLearner - Progress</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#4eeeb9",
+                        "on-primary": "#f6f0ff",
+                        "on-background": "#2d2e34",
+                        "tertiary-dim": "#005b43",
+                        "inverse-on-surface": "#9c9ca4",
+                        "secondary-container": "#ffc4b2",
+                        "surface-tint": "#5b30ee",
+                        "error": "#b41340",
+                        "surface-variant": "#dcdce7",
+                        "surface-container-highest": "#dcdce7",
+                        "on-tertiary": "#c7ffe4",
+                        "on-surface": "#2d2e34",
+                        "primary-fixed": "#a391ff",
+                        "on-error-container": "#510017",
+                        "background": "#f7f6fe",
+                        "inverse-surface": "#0c0e13",
+                        "tertiary-container": "#60fcc6",
+                        "outline": "#76767d",
+                        "surface-container": "#e8e7f1",
+                        "surface-bright": "#f7f6fe",
+                        "on-primary-fixed": "#000000",
+                        "on-secondary-fixed-variant": "#942d00",
+                        "secondary-fixed": "#ffc4b2",
+                        "outline-variant": "#acacb4",
+                        "surface-container-low": "#f0f0f9",
+                        "secondary-dim": "#922c00",
+                        "inverse-primary": "#927dff",
+                        "error-container": "#f74b6d",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#00694d",
+                        "surface": "#f7f6fe",
+                        "on-tertiary-fixed-variant": "#00694d",
+                        "on-tertiary-container": "#005e44",
+                        "primary-dim": "#4f1ae3",
+                        "on-secondary-fixed": "#631b00",
+                        "surface-dim": "#d3d4df",
+                        "on-secondary": "#ffefeb",
+                        "primary-container": "#a391ff",
+                        "on-surface-variant": "#5a5b62",
+                        "on-error": "#ffefef",
+                        "on-tertiary-fixed": "#004935",
+                        "error-dim": "#a70138",
+                        "primary": "#5b30ee",
+                        "on-secondary-container": "#842700",
+                        "secondary": "#a63300",
+                        "primary-fixed-dim": "#9581ff",
+                        "tertiary-fixed": "#60fcc6",
+                        "surface-container-high": "#e2e2ec",
+                        "on-primary-container": "#220076",
+                        "on-primary-fixed-variant": "#2b0090",
+                        "secondary-fixed-dim": "#ffb197"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .shadow-kinetic {
+            box-shadow: 0 12px 32px rgba(108, 71, 255, 0.12);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .forgetting-curve-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 2s ease-out forwards;
+        }
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24 md:pb-0 font-body">
+<!-- TopAppBar (Hidden on mobile, flex on md+) -->
+<header class="hidden md:flex justify-between items-center w-full px-6 py-4 sticky top-0 z-50 bg-white/70 backdrop-blur-3xl no-border shadow-[0_8px_32px_rgba(108,71,255,0.08)]">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#6C47FF]">menu</span>
+<span class="font-headline font-extrabold tracking-tight text-2xl text-[#6C47FF]">SmartLearner</span>
+</div>
+<nav class="flex gap-8">
+<a class="text-slate-500 hover:bg-slate-100/50 transition-all duration-300 px-4 py-2 rounded-full font-semibold" href="#">Dashboard</a>
+<a class="text-[#6C47FF] font-bold hover:bg-slate-100/50 transition-all duration-300 px-4 py-2 rounded-full" href="#">Progress</a>
+<a class="text-slate-500 hover:bg-slate-100/50 transition-all duration-300 px-4 py-2 rounded-full font-semibold" href="#">Badges</a>
+<a class="text-slate-500 hover:bg-slate-100/50 transition-all duration-300 px-4 py-2 rounded-full font-semibold" href="#">Settings</a>
+</nav>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-semibold hover:bg-primary-dim transition-colors shadow-kinetic">Sign In</button>
+</header>
+<!-- Mobile Header -->
+<header class="md:hidden flex justify-between items-center w-full px-6 py-4 sticky top-0 z-50 bg-white/70 backdrop-blur-3xl shadow-[0_8px_32px_rgba(108,71,255,0.08)]">
+<span class="font-headline font-extrabold tracking-tight text-2xl text-primary">Progress</span>
+<img alt="User Avatar" class="w-10 h-10 rounded-full" data-alt="Portrait of a young woman smiling brightly, studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxDjTS03K0boS5VYzsNf2l-XBNy6o9rTYF8OEx-g6wx1boRQWl6hWl2cCJOobLKfOwBPFD3GcepbuNw1tdC_HJLmYWBFfyzKbJ0UNPwBjS0X_ii7fmageV5WebCJic4w3T4UoAfpZLh_-VRXK0eFwExtUzArb1H1r8VoAUX2mypSVqpwVmVl95njK5Kt9q1t5s92wUutwLOS7Fo1ita0--SIoYh-dC8582bi93F01F_daknr9D3jrO48pLtWdjPC-eflztXWKIf5s"/>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 space-y-8">
+<!-- NEW: Stats Cards Row -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4 overflow-x-auto no-scrollbar pb-2">
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col items-center text-center shadow-sm min-w-[140px]">
+<span class="material-symbols-outlined text-primary mb-2" style="font-variation-settings: 'FILL' 1;">style</span>
+<span class="text-xl font-headline font-extrabold text-on-surface">1,247</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Total Cards Learned</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col items-center text-center shadow-sm min-w-[140px]">
+<span class="material-symbols-outlined text-secondary mb-2" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span class="text-xl font-headline font-extrabold text-on-surface">89</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Total Sessions</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col items-center text-center shadow-sm min-w-[140px]">
+<span class="material-symbols-outlined text-tertiary mb-2" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="text-xl font-headline font-extrabold text-on-surface">87%</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Retention Rate</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 flex flex-col items-center text-center shadow-sm min-w-[140px]">
+<span class="material-symbols-outlined text-error mb-2" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="text-xl font-headline font-extrabold text-on-surface">14 Days</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Best Streak</span>
+</div>
+</section>
+<!-- Legacy Stats Row (Kept as per request to keep all existing content) -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm flex flex-col items-center justify-center transform hover:-translate-y-1 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary text-3xl mb-2" style="font-variation-settings: 'FILL' 1;">style</span>
+<span class="text-3xl font-headline font-extrabold text-primary tracking-tight">12,450</span>
+<span class="text-sm font-semibold text-on-surface-variant mt-1">Total Cards</span>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm flex flex-col items-center justify-center transform hover:-translate-y-1 transition-transform duration-300">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-2" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="text-3xl font-headline font-extrabold text-tertiary tracking-tight">342</span>
+<span class="text-sm font-semibold text-on-surface-variant mt-1">Sessions</span>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm flex flex-col items-center justify-center transform hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary-container/30 to-transparent"></div>
+<span class="material-symbols-outlined text-tertiary-dim text-3xl mb-2 relative z-10" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-3xl font-headline font-extrabold text-tertiary-dim tracking-tight relative z-10">94%</span>
+<span class="text-sm font-semibold text-on-surface-variant mt-1 relative z-10">Retention Rate</span>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm flex flex-col items-center justify-center transform hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary-container/30 to-transparent"></div>
+<span class="material-symbols-outlined text-secondary text-3xl mb-2 relative z-10" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="text-3xl font-headline font-extrabold text-secondary tracking-tight relative z-10">42 Days</span>
+<span class="text-sm font-semibold text-on-surface-variant mt-1 relative z-10">Current Streak</span>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Heatmap & Weekly Chart -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Retention Heatmap -->
+<section class="bg-surface-container-low rounded-lg p-8">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-headline font-extrabold text-on-background">Learning Consistency</h2>
+<span class="text-sm font-semibold text-on-surface-variant">Last 365 Days</span>
+</div>
+<div class="overflow-x-auto no-scrollbar pb-4">
+<div class="inline-flex flex-col gap-1 min-w-max">
+<div class="flex gap-1" id="heatmap-container">
+<script>
+                                const container = document.getElementById('heatmap-container');
+                                const colors = ['bg-surface-container-high', 'bg-primary-container/40', 'bg-primary-container/70', 'bg-primary', 'bg-primary-dim'];
+                                let html = '';
+                                for(let w=0; w<52; w++) {
+                                    html += '<div class="flex flex-col gap-1">';
+                                    for(let d=0; d<7; d++) {
+                                        const colorIndex = Math.random() > 0.3 ? Math.floor(Math.random() * 4) + 1 : 0;
+                                        html += `<div class="w-3 h-3 rounded-[2px] ${colors[colorIndex]}"></div>`;
+                                    }
+                                    html += '</div>';
+                                }
+                                container.innerHTML = html;
+                            </script>
+</div>
+</div>
+</div>
+<div class="flex justify-end items-center gap-2 mt-4 text-xs font-semibold text-on-surface-variant">
+<span>Less</span>
+<div class="w-3 h-3 rounded-[2px] bg-surface-container-high"></div>
+<div class="w-3 h-3 rounded-[2px] bg-primary-container/40"></div>
+<div class="w-3 h-3 rounded-[2px] bg-primary-container/70"></div>
+<div class="w-3 h-3 rounded-[2px] bg-primary"></div>
+<div class="w-3 h-3 rounded-[2px] bg-primary-dim"></div>
+<span>More</span>
+</div>
+</section>
+<!-- Weekly Bar Chart -->
+<section class="bg-surface-container-lowest rounded-lg p-8 shadow-sm">
+<h2 class="text-xl font-headline font-extrabold text-on-background mb-8">Cards Reviewed This Week</h2>
+<div class="h-64 flex items-end justify-between gap-2 md:gap-4 relative">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none z-0 border-t border-b border-surface-variant/30 py-[2px]">
+<div class="w-full h-px bg-surface-variant/30"></div>
+<div class="w-full h-px bg-surface-variant/30"></div>
+<div class="w-full h-px bg-surface-variant/30"></div>
+</div>
+<div class="relative z-10 w-full flex flex-col items-center gap-2 group">
+<div class="w-full max-w-[48px] bg-primary-container rounded-t-lg h-[40%] group-hover:bg-primary transition-colors relative"></div>
+<span class="text-sm font-semibold text-on-surface-variant">Mon</span>
+</div>
+<div class="relative z-10 w-full flex flex-col items-center gap-2 group">
+<div class="w-full max-w-[48px] bg-primary-container rounded-t-lg h-[65%] group-hover:bg-primary transition-colors relative"></div>
+<span class="text-sm font-semibold text-on-surface-variant">Tue</span>
+</div>
+<div class="relative z-10 w-full flex flex-col items-center gap-2 group">
+<div class="w-full max-w-[48px] bg-primary-container rounded-t-lg h-[30%] group-hover:bg-primary transition-colors relative"></div>
+<span class="text-sm font-semibold text-on-surface-variant">Wed</span>
+</div>
+<div class="relative z-10 w-full flex flex-col items-center gap-2 group">
+<div class="w-full max-w-[48px] bg-primary rounded-t-lg h-[90%] shadow-kinetic relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-surface text-xs font-bold py-1 px-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">412</div>
+</div>
+<span class="text-sm font-extrabold text-primary">Thu</span>
+</div>
+<div class="relative z-10 w-full flex flex-col items-center gap-2 group">
+<div class="w-full max-w-[48px] bg-primary-container rounded-t-lg h-[50%] group-hover:bg-primary transition-colors relative"></div>
+<span class="text-sm font-semibold text-on-surface-variant">Fri</span>
+</div>
+<div class="relative z-10 w-full flex flex-col items-center gap-2 group">
+<div class="w-full max-w-[48px] bg-secondary-container rounded-t-lg h-[15%] group-hover:bg-secondary transition-colors relative"></div>
+<span class="text-sm font-semibold text-on-surface-variant">Sat</span>
+</div>
+<div class="relative z-10 w-full flex flex-col items-center gap-2 group">
+<div class="w-full max-w-[48px] bg-secondary-container rounded-t-lg h-[20%] group-hover:bg-secondary transition-colors relative"></div>
+<span class="text-sm font-semibold text-on-surface-variant">Sun</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Mastery & Forgetting Curve -->
+<div class="lg:col-span-1 flex flex-col gap-8">
+<!-- Topic Mastery -->
+<section class="bg-surface-container-low rounded-lg p-6 flex flex-col">
+<h2 class="text-xl font-headline font-extrabold text-on-background mb-6">Topic Mastery</h2>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/30 flex items-center justify-center relative">
+<svg class="absolute inset-0 w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-tertiary-container/30" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-tertiary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="95, 100" stroke-width="3"></path>
+</svg>
+<span class="material-symbols-outlined text-tertiary text-xl" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<div>
+<h3 class="font-bold text-on-background">Neuroscience</h3>
+<p class="text-xs font-semibold text-on-surface-variant">Level 8</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-lg font-extrabold text-tertiary">95%</span>
+<div class="flex items-center text-tertiary text-xs font-bold gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 2%
+                            </div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center relative">
+<svg class="absolute inset-0 w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-primary-container/30" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="82, 100" stroke-width="3"></path>
+</svg>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">calculate</span>
+</div>
+<div>
+<h3 class="font-bold text-on-background">Calculus II</h3>
+<p class="text-xs font-semibold text-on-surface-variant">Level 5</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-lg font-extrabold text-primary">82%</span>
+<div class="flex items-center text-primary text-xs font-bold gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 5%
+                            </div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container/30 flex items-center justify-center relative">
+<svg class="absolute inset-0 w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-secondary-container/30" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="45, 100" stroke-width="3"></path>
+</svg>
+<span class="material-symbols-outlined text-secondary text-xl" style="font-variation-settings: 'FILL' 1;">language</span>
+</div>
+<div>
+<h3 class="font-bold text-on-background">Spanish Vocab</h3>
+<p class="text-xs font-semibold text-on-surface-variant">Level 2</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-lg font-extrabold text-secondary">45%</span>
+<div class="flex items-center text-secondary text-xs font-bold gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_down</span> 1%
+                            </div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center relative">
+<svg class="absolute inset-0 w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-primary-container/30" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="78, 100" stroke-width="3"></path>
+</svg>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+</div>
+<div>
+<h3 class="font-bold text-on-background">World History</h3>
+<p class="text-xs font-semibold text-on-surface-variant">Level 6</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-lg font-extrabold text-primary">78%</span>
+<div class="flex items-center text-primary text-xs font-bold gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 8%
+                            </div>
+</div>
+</div>
+</div>
+<button class="mt-6 w-full py-3 rounded-full border-2 border-primary-container text-primary font-bold hover:bg-primary-container/20 transition-colors">
+                    View All Topics
+                </button>
+</section>
+<!-- NEW: Forgetting Curve Widget -->
+<section class="bg-surface-container-low rounded-lg p-6 flex flex-col">
+<h2 class="text-xl font-headline font-extrabold text-on-background mb-2">The Science Behind SmartLearner</h2>
+<p class="text-xs font-semibold text-on-surface-variant mb-6">Optimized review cycles beat natural forgetting.</p>
+<div class="relative h-48 w-full mt-4">
+<!-- Chart Background Grids -->
+<div class="absolute inset-0 flex flex-col justify-between border-l border-b border-outline-variant/30">
+<div class="w-full h-px bg-outline-variant/10"></div>
+<div class="w-full h-px bg-outline-variant/10"></div>
+<div class="w-full h-px bg-outline-variant/10"></div>
+</div>
+<svg class="absolute inset-0 w-full h-full" fill="none" preserveaspectratio="none" viewbox="0 0 300 150">
+<!-- Without SmartLearner Curve (Red Exponential Decay) -->
+<path class="forgetting-curve-path" d="M0,10 C30,80 100,140 300,145" stroke="#b41340" stroke-linecap="round" stroke-width="3"></path>
+<!-- With SmartLearner Curve (Green Stepped Reinforcement) -->
+<path class="forgetting-curve-path" d="M0,10 C30,40 50,50 60,10 L60,10 C90,40 110,50 120,10 L120,10 C160,40 180,50 200,10 L200,10 C250,30 280,40 300,45" stroke="#00694d" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<!-- Axis Labels -->
+<div class="absolute -left-10 top-1/2 -rotate-90 text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Retention %</div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Time (Days)</div>
+<!-- Legend -->
+<div class="absolute top-0 right-0 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<div class="w-3 h-1 bg-[#00694d] rounded-full"></div>
+<span class="text-[9px] font-bold text-on-surface-variant">With SmartLearner</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-1 bg-[#b41340] rounded-full"></div>
+<span class="text-[9px] font-bold text-on-surface-variant">Without SmartLearner</span>
+</div>
+</div>
+</div>
+<div class="mt-10 pt-4 border-t border-outline-variant/10">
+<p class="text-[10px] leading-relaxed text-on-surface-variant">
+                        Our algorithm identifies the <strong class="text-primary">optimal moment</strong> to review, pushing information from short-term to long-term memory.
+                    </p>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Visible on mobile, hidden on md+) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/70 dark:bg-slate-900/70 backdrop-blur-3xl rounded-t-[2.5rem] no-border shadow-[0_-12px_32px_rgba(108,71,255,0.12)]">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#6C47FF] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">dashboard</span>
+<span class="font-body text-[11px] font-semibold tracking-wide">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#6C47FF]/10 dark:bg-[#6C47FF]/20 text-[#6C47FF] dark:text-[#8B6EFF] rounded-2xl px-5 py-2 hover:text-[#6C47FF] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-body text-[11px] font-semibold tracking-wide">Progress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#6C47FF] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">military_tech</span>
+<span class="font-body text-[11px] font-semibold tracking-wide">Badges</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#6C47FF] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span class="font-body text-[11px] font-semibold tracking-wide">Settings</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-8 gap-6 w-full py-12 bg-[#f0f0f9] dark:bg-slate-950 no-border mb-20 md:mb-0">
+<div class="font-bold text-[#6C47FF] font-headline">
+        © 2024 SmartLearner AI. Elevate your mind.
+    </div>
+<div class="flex gap-6">
+<a class="text-slate-500 font-body text-sm hover:text-[#6C47FF] transition-all" href="#">Privacy</a>
+<a class="text-slate-500 font-body text-sm hover:text-[#6C47FF] transition-all" href="#">Terms</a>
+<a class="text-slate-500 font-body text-sm hover:text-[#6C47FF] transition-all" href="#">Support</a>
+<a class="text-slate-500 font-body text-sm hover:text-[#6C47FF] transition-all" href="#">Contact</a>
+</div>
+</footer>
+</body></html>

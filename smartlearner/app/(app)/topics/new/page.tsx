@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+
 import { cn } from "@/lib/cn";
 import { TOPIC_EMOJIS, TOPIC_COLORS } from "@/types";
 import { Sparkles, Loader2, ArrowLeft, CheckCircle2 } from "lucide-react";
@@ -24,8 +24,7 @@ export default function NewTopicPage() {
   const [generating, setGenerating] = useState(false);
   const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
   const [success, setSuccess] = useState(false);
-  const [createdTopic, setCreatedTopic] = useState<any>(null);
-  const router = useRouter();
+  const [createdTopic, setCreatedTopic] = useState<{title: string, card_count: number} | null>(null);
   const queryClient = useQueryClient();
 
   const handleGenerate = async () => {
@@ -73,10 +72,11 @@ export default function NewTopicPage() {
       queryClient.invalidateQueries({ queryKey: ["dashboard"] });
 
       toast.success("✨ Your study plan is ready!");
-    } catch (error: any) {
+    } catch (err: unknown) {
       clearInterval(interval);
       setGenerating(false);
-      toast.error(error.message || "Something went wrong");
+      const message = err instanceof Error ? err.message : "Something went wrong";
+      toast.error(message);
     }
   };
 

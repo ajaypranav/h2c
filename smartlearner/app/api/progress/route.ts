@@ -101,6 +101,14 @@ export async function GET() {
       cards: weeklyMap.get(i + 1) || 0
     }));
 
+    // 4. Topic Mastery Breakdown
+    const topicBreakdown = await prisma.topic.findMany({
+      where: { user_id: user.id },
+      select: { title: true, emoji: true, color: true, mastery_score: true },
+      orderBy: { mastery_score: 'desc' },
+      take: 4
+    });
+
     return NextResponse.json({
       data: {
         totalSessions,
@@ -108,7 +116,8 @@ export async function GET() {
         retentionRate,
         bestStreak: dbUser?.longest_streak || 0,
         heatmapData,
-        weeklyData
+        weeklyData,
+        topicBreakdown
       }
     });
 
