@@ -146,7 +146,7 @@ export default function ProgressPage() {
                 <div className="w-full h-px bg-[var(--color-border)]"></div>
               </div>
               
-              {weeklyData.map((day: any) => {
+              {weeklyData.map((day: { day: string; cards: number }) => {
                 const heightPercentage = Math.max((day.cards / maxCards) * 100, 5);
                 const isToday = new Date().toLocaleDateString('en-US', {weekday: 'short'}) === day.day;
                 
@@ -188,7 +188,7 @@ export default function ProgressPage() {
             
             <div className="space-y-4">
               {topicBreakdown && topicBreakdown.length > 0 ? (
-                topicBreakdown.map((t: any) => {
+                topicBreakdown.map((t: { title: string; emoji: string; color: string; mastery_score: number }) => {
                   const percent = Math.round(t.mastery_score);
                   const isHigh = percent >= 80;
                   const isLow = percent < 50;

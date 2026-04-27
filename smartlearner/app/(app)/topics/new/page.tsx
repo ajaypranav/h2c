@@ -24,7 +24,8 @@ export default function NewTopicPage() {
   const [generating, setGenerating] = useState(false);
   const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
   const [success, setSuccess] = useState(false);
-  const [createdTopic, setCreatedTopic] = useState<{title: string, card_count: number} | null>(null);
+  const [createdTopic, setCreatedTopic] = useState<{id: string, title: string, card_count: number} | null>(null);
+  const [generatedCards, setGeneratedCards] = useState<{front: string, back: string, card_type: string}[]>([]);
   const queryClient = useQueryClient();
 
   const handleGenerate = async () => {
@@ -64,6 +65,7 @@ export default function NewTopicPage() {
 
       clearInterval(interval);
       setCreatedTopic(data.data?.topic);
+      setGeneratedCards(data.data?.cards || []);
       setGenerating(false);
       setSuccess(true);
 
@@ -81,6 +83,8 @@ export default function NewTopicPage() {
   };
 
   if (success) {
+    const previewCards = generatedCards.slice(0, 3);
+
     return (
       <div className="max-w-xl mx-auto py-12">
         <div className="rounded-[var(--radius-xl)] bg-surface p-8 shadow-md text-center">
@@ -88,18 +92,44 @@ export default function NewTopicPage() {
             <CheckCircle2 size={64} className="text-success mx-auto mb-4" />
           </div>
           <h2 className="text-2xl font-extrabold text-text mb-2">Topic Created! 🎉</h2>
-          <p className="text-text-muted text-sm mb-8">
+          <p className="text-text-muted text-sm mb-6">
             &quot;{createdTopic?.title || title}&quot; has been added to your learning plan.
-            {createdTopic?.card_count > 0 && ` ${createdTopic.card_count} review cards are ready!`}
+            {(createdTopic?.card_count ?? 0) > 0 && ` ${createdTopic?.card_count} review cards are ready!`}
           </p>
 
-          <div className="flex items-center justify-center gap-3">
-            <Link
-              href="/dashboard"
-              className="px-6 py-3 rounded-[var(--radius-full)] bg-gradient-to-r from-primary to-[#8B5CF6] text-white text-sm font-bold hover:shadow-glow transition-all active:scale-[0.98]"
-            >
-              Go to Dashboard
-            </Link>
+          {/* Card Previews */}
+          {previewCards.length > 0 && (
+            <div className="space-y-3 mb-6 text-left">
+              <p className="text-xs font-bold text-text-muted uppercase tracking-wider text-center">Sample Cards</p>
+              {previewCards.map((card, i) => (
+                <div key={i} className="p-4 rounded-[var(--radius-lg)] bg-surface-2 animate-bounce-in" style={{ animationDelay: `${i * 100}ms` }}>
+                  <p className="font-semibold text-text text-sm mb-1">{card.front}</p>
+                  <p className="text-text-muted text-xs">{card.back}</p>
+                </div>
+              ))}
+              {generatedCards.length > 3 && (
+                <p className="text-xs text-text-light text-center">+{generatedCards.length - 3} more cards</p>
+              )}
+            </div>
+          )}
+
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            {createdTopic?.id && (
+              <Link
+                href={`/review?topic=${createdTopic.id}`}
+                className="px-6 py-3 rounded-[var(--radius-full)] bg-gradient-to-r from-primary to-[#8B5CF6] text-white text-sm font-bold hover:shadow-glow transition-all active:scale-[0.98]"
+              >
+                Start Reviewing
+              </Link>
+            )}
+            {createdTopic?.id && (
+              <Link
+                href={`/topics/${createdTopic.id}`}
+                className="px-6 py-3 rounded-[var(--radius-full)] bg-surface-2 text-text text-sm font-semibold hover:bg-surface-3 transition-all"
+              >
+                View All Cards
+              </Link>
+            )}
             <button
               onClick={() => {
                 setTitle("");
@@ -108,6 +138,7 @@ export default function NewTopicPage() {
                 setColor("#6C47FF");
                 setSuccess(false);
                 setCreatedTopic(null);
+                setGeneratedCards([]);
               }}
               className="px-6 py-3 rounded-[var(--radius-full)] bg-surface-2 text-text text-sm font-semibold hover:bg-surface-3 transition-all"
             >
