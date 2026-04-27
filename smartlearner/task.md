@@ -246,13 +246,14 @@
 
 ### 6.4 Topic Detail Enhancement
 - **Design ref:** `design-reference/06-topic-detail.html`
-- [ ] Add mastery circular progress ring
+- [x] Add mastery circular progress ring
 - [ ] Implement stats row (4 pills)
 - [ ] Add edit/delete pencil/trash buttons
 - [ ] Add "Review Now" FAB
-- [ ] Wire up retention line chart (Recharts)
-- [ ] Manual card add form
-- [ ] Card edit/delete actions per card
+- [x] Wire up retention line chart (Recharts)
+- [x] Topic Retention Plan (Calendar UI)
+- [x] Manual card add form
+- [x] Card edit/delete actions per card
 
 ### 6.5 Session Complete Enhancement
 - **Design ref:** `design-reference/08-session-complete.html`
