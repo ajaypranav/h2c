@@ -60,7 +60,9 @@ interface SessionResultData {
   badgesEarned?: { id: string; name: string; icon: string }[];
 }
 
-export default function ReviewPage() {
+import { Suspense } from "react";
+
+function ReviewPageContent() {
   useRouter();
   const searchParams = useSearchParams();
   const scheduleId = searchParams.get("schedule");
@@ -352,5 +354,13 @@ export default function ReviewPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ReviewPage() {
+  return (
+    <Suspense fallback={<div className="flex h-screen w-full items-center justify-center bg-[#F8F9FA]"><Loader2 className="animate-spin text-primary" size={32} /></div>}>
+      <ReviewPageContent />
+    </Suspense>
   );
 }
