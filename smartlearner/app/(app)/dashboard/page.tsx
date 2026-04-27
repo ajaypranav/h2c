@@ -211,6 +211,45 @@ export default function DashboardPage() {
         </div>
       </div>
 
+      {/* Pending Retention Schedules */}
+      {dashboard?.pendingTopicSchedules && dashboard.pendingTopicSchedules.length > 0 && (
+        <div>
+          <h3 className="text-lg font-bold text-text mb-4 flex items-center gap-2">
+            <Target size={20} className="text-primary" /> Topic Retention Plan Due
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            {dashboard.pendingTopicSchedules.map((schedule: any) => (
+              <div
+                key={schedule.id}
+                className="group relative rounded-[var(--radius-lg)] bg-surface p-5 shadow-sm border border-border"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="w-10 h-10 rounded-[var(--radius-md)] flex items-center justify-center text-xl"
+                      style={{ backgroundColor: `${schedule.topic.color}15` }}
+                    >
+                      {schedule.topic.emoji}
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-text text-sm">{schedule.topic.title}</h4>
+                      <p className="text-text-light text-[10px] mt-0.5">Interval {schedule.interval_num} ({schedule.interval_num} days)</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <Link
+                  href={`/review?topic=${schedule.topic_id}&schedule=${schedule.id}`}
+                  className="w-full inline-flex justify-center items-center gap-2 px-4 py-2 rounded-[var(--radius-md)] bg-primary-light/20 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all"
+                >
+                  <Sparkles size={14} /> Review Topic Now
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Topic Cards Grid */}
       <div>
         <div className="flex items-center justify-between mb-4">

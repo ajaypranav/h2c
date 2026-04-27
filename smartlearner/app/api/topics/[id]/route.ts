@@ -24,6 +24,9 @@ export async function GET(
       include: {
         review_cards: {
           orderBy: { created_at: "asc" }
+        },
+        review_schedules: {
+          orderBy: { review_date: "asc" }
         }
       }
     });

@@ -199,8 +199,65 @@ export default function TopicDetailPage() {
         ))}
       </section>
 
-      {/* Retention Chart */}
-      <RetentionChart />
+      {/* Retention Chart & Schedules */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <RetentionChart />
+        
+        {topic.review_schedules && topic.review_schedules.length > 0 && (
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-border-muted overflow-hidden flex flex-col">
+            <h3 className="text-lg font-bold text-text mb-4">Topic Retention Plan</h3>
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-border-muted scrollbar-track-transparent">
+              {topic.review_schedules.map((schedule: any) => {
+                const date = new Date(schedule.review_date);
+                const isDue = schedule.status === "pending" && date <= new Date();
+                const isCompleted = schedule.status === "completed";
+                
+                return (
+                  <div 
+                    key={schedule.id} 
+                    className={cn(
+                      "flex-shrink-0 w-24 rounded-2xl border overflow-hidden flex flex-col shadow-sm transition-transform hover:-translate-y-1",
+                      isCompleted ? "border-[#00C896] opacity-75" : 
+                      isDue ? "border-[#FF4757] ring-2 ring-[#FF4757]/20" : 
+                      "border-border-muted"
+                    )}
+                  >
+                    {/* Calendar Header (Month) */}
+                    <div className={cn(
+                      "text-center py-1.5 text-[10px] font-bold text-white uppercase tracking-wider",
+                      isCompleted ? "bg-[#00C896]" : 
+                      isDue ? "bg-[#FF4757]" : 
+                      "bg-primary"
+                    )}>
+                      {date.toLocaleString('default', { month: 'short' })} {date.getFullYear()}
+                    </div>
+                    
+                    {/* Calendar Body (Day) */}
+                    <div className={cn(
+                      "flex-1 flex flex-col items-center justify-center py-3 px-2",
+                      isCompleted ? "bg-[#00C896]/10" : 
+                      isDue ? "bg-[#FF4757]/10" : 
+                      "bg-white"
+                    )}>
+                      <span className={cn(
+                        "text-3xl font-extrabold",
+                        isCompleted ? "text-[#005E46]" : 
+                        isDue ? "text-[#a63300]" : 
+                        "text-text"
+                      )}>
+                        {date.getDate()}
+                      </span>
+                      <span className="text-[10px] text-text-muted font-semibold mt-1 bg-white/50 px-2 py-0.5 rounded-full">
+                        Day {schedule.interval_num}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Cards Grid */}
       <section className="space-y-6">

@@ -6,7 +6,7 @@ import { X, Sparkles, Lightbulb, Loader2, RefreshCw, LayoutDashboard, Flame, Awa
 import Link from "next/link";
 import confetti from "canvas-confetti";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { getLevelProgress } from "@/lib/xp";
 
 const ratingOptions = [
@@ -37,8 +37,12 @@ async function submitCard(sessionId: string, cardId: string, rating: number) {
   return res.json();
 }
 
-async function completeSession(sessionId: string) {
-  const res = await fetch(`/api/reviews/session/${sessionId}/complete`, { method: "POST" });
+async function completeSession(sessionId: string, scheduleId: string | null) {
+  const res = await fetch(`/api/reviews/session/${sessionId}/complete`, { 
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ scheduleId })
+  });
   if (!res.ok) throw new Error("Failed to complete session");
   return res.json();
 }
@@ -58,6 +62,8 @@ interface SessionResultData {
 
 export default function ReviewPage() {
   useRouter();
+  const searchParams = useSearchParams();
+  const scheduleId = searchParams.get("schedule");
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -111,7 +117,7 @@ export default function ReviewPage() {
         if (nextIndex >= cards.length) {
           const elapsed = Math.floor((Date.now() - sessionStartTime.current) / 1000);
           setSessionDuration(elapsed);
-          const completeRes = await completeSession(sessionId);
+          const completeRes = await completeSession(sessionId, scheduleId);
           setSessionResult(completeRes.data);
           setIsComplete(true);
           confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ["#6C47FF", "#FF6B35", "#00C896", "#FFB800"] });

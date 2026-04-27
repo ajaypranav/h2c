@@ -7,6 +7,7 @@ import { TOPIC_EMOJIS, TOPIC_COLORS } from "@/types";
 import { ChevronRight, ChevronLeft, Sparkles, Loader2, Check } from "lucide-react";
 import toast from "react-hot-toast";
 import confetti from "canvas-confetti";
+import { createClient } from "@/lib/supabase/client";
 
 const LEARNING_GOALS = [
   { id: "exams", icon: "📝", label: "Study for Exams" },
@@ -77,6 +78,11 @@ export default function OnboardingPage() {
       if (!topicRes.ok) {
         throw new Error(topicData.error?.message || "Failed to create topic");
       }
+
+      // Mark onboarding as complete in Supabase user metadata
+      // (middleware reads this flag on the Edge to gate protected routes)
+      const supabase = createClient();
+      await supabase.auth.updateUser({ data: { onboarding_complete: true } });
 
       setGenerating(false);
 

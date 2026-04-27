@@ -31,13 +31,24 @@ export async function GET() {
       include: { topic: { select: { title: true, emoji: true } } }
     });
 
+    const pendingTopicSchedules = await prisma.topicReviewSchedule.findMany({
+      where: {
+        user_id: user.id,
+        status: "pending",
+        review_date: { lte: new Date() }
+      },
+      include: { topic: { select: { title: true, emoji: true, color: true, card_count: true, id: true } } },
+      orderBy: { review_date: "asc" }
+    });
+
     return NextResponse.json({ 
       data: { 
         dueCount: dueCardsCount, 
         streak: dbUser?.streak_count || 0, 
         xp: dbUser?.xp_total || 0, 
         level: dbUser?.level || 1, 
-        recentActivity 
+        recentActivity,
+        pendingTopicSchedules
       } 
     });
   } catch (error) {

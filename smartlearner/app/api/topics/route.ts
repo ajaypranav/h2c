@@ -64,6 +64,23 @@ export async function POST(request: Request) {
       },
     });
 
+    // Generate fixed retention schedules (1, 6, 15, 38, 95 days)
+    const intervals = [1, 6, 15, 38, 95];
+    const today = new Date();
+    
+    await prisma.topicReviewSchedule.createMany({
+      data: intervals.map(interval => {
+        const reviewDate = new Date(today);
+        reviewDate.setDate(today.getDate() + interval);
+        return {
+          topic_id: topic.id,
+          user_id: user.id,
+          interval_num: interval,
+          review_date: reviewDate,
+        };
+      })
+    });
+
     // Generate cards with AI
     const cardCount = sanitizedNotes && sanitizedNotes.length > 500 ? 15 : 10;
     let cards: Record<string, unknown>[] = [];

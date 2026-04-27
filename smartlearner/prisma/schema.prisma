@@ -28,6 +28,7 @@ model User {
   review_results ReviewResult[]
   achievements   Achievement[]
   notifications  Notification[]
+  topic_schedules TopicReviewSchedule[]
 
   @@map("users")
 }
@@ -49,6 +50,7 @@ model Topic {
   user          User         @relation(fields: [user_id], references: [id], onDelete: Cascade)
   review_cards  ReviewCard[]
   review_sessions ReviewSession[]
+  review_schedules TopicReviewSchedule[]
 
   @@index([user_id, status])
   @@index([user_id, created_at(sort: Desc)])
@@ -150,4 +152,21 @@ model Notification {
   user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("notifications")
+}
+
+model TopicReviewSchedule {
+  id           String   @id @default(uuid())
+  topic_id     String
+  user_id      String
+  interval_num Int      // e.g., 1, 3, 7, 14, 30
+  review_date  DateTime @db.Date
+  status       String   @default("pending") // pending, completed, missed
+  created_at   DateTime @default(now()) @db.Timestamptz()
+
+  topic        Topic    @relation(fields: [topic_id], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id, review_date])
+  @@index([topic_id])
+  @@map("topic_review_schedules")
 }

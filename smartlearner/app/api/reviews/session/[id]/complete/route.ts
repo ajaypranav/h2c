@@ -24,6 +24,9 @@ export async function POST(
   const { id: sessionId } = await params;
 
   try {
+    const body = await request.json().catch(() => ({}));
+    const { scheduleId } = body;
+
     // Complete the session
     const session = await prisma.reviewSession.update({
       where: { id: sessionId },
@@ -32,6 +35,14 @@ export async function POST(
         duration_secs: Math.floor((Date.now() - new Date().getTime()) / 1000) || 0,
       },
     });
+
+    if (scheduleId) {
+      // Mark the static topic schedule as completed
+      await prisma.topicReviewSchedule.update({
+        where: { id: scheduleId },
+        data: { status: "completed" },
+      }).catch(e => console.error("Failed to update schedule:", e));
+    }
 
     // Update user streak
     const today = new Date();

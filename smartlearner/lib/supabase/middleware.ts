@@ -47,10 +47,22 @@ export async function updateSession(request: NextRequest) {
   }
 
   if (user && isAuthPage) {
-    // Already logged in, redirect to dashboard
+    // Already logged in — check if onboarding is done
+    const onboardingComplete = user.user_metadata?.onboarding_complete === true;
     const url = request.nextUrl.clone();
-    url.pathname = "/dashboard";
+    url.pathname = onboardingComplete ? "/dashboard" : "/onboarding";
     return NextResponse.redirect(url);
+  }
+
+  // Logged-in users who haven't completed onboarding must go to /onboarding
+  const isOnboardingPage = request.nextUrl.pathname.startsWith("/onboarding");
+  if (user && !isOnboardingPage && !isPublicPage && !isAPIRoute) {
+    const onboardingComplete = user.user_metadata?.onboarding_complete === true;
+    if (!onboardingComplete) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/onboarding";
+      return NextResponse.redirect(url);
+    }
   }
 
   return supabaseResponse;
